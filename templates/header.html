@@ -1,0 +1,18 @@
+{% load static %}
+{% load i18n %}
+
+<header class="d-flex flex-column align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+    <div class="mb-2 mb-md-0 text-center">
+        <a href="{% url 'page_home' %}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+        <span class="fs-4">{% trans 'Elanco' %}</span>
+        </a>
+    </div>
+
+
+    <ul class="nav mb-3 justify-content-center text-right">
+        <li><a href="{% url 'page_visuals' %}" class="nav-link px-2">{% trans 'Visuals' %}</a></li>
+        <li><a href="{% url 'page_data' %}" class="nav-link px-2">{% trans 'Data' %}</a></li>
+        <li class="ms-auto">
+    </ul>
+    </div>
+</header>

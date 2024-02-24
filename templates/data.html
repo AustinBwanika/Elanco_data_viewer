@@ -1,0 +1,54 @@
+
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %} Data View {% endblock %}
+
+{% block head %}
+
+{% endblock%}
+
+{% block content%}
+<div class ="py-5 text-center">
+    <h1 class="display-3">Elanco Data Viewer - Full Data</h1>
+    <form action ="" method="get" class="form-inline justify-content-center">
+        <input type="text" name="search" class="form-control mb-2 mr-sm-2" placeholder="Search by Resource Location" >
+        <button type="submit" class="btn btn-primary mb-2">Search</button>
+    </form>
+    <table class="table mt-4">
+        <thead class="thead-dark">
+            <tr>
+                <th>Consumed Quantity</th>
+                <th>Cost</th>
+                <th>Date</th>
+                <th>Instance ID</th>
+                <th>Meter Category</th>
+                <th>Resource Group</th>
+                <th>Resource Location</th>
+                <th>Tags</th>
+                <th>Unit of Measure</th>
+                <th>Location</th>
+                <th>Service Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in data%}
+            <tr>
+                <td>{{ item.ConsumedQuantity}}</td>
+                <td>{{ item.Cost}}</td>
+                <td>{{ item.Date}}</td>
+                <td>{{ item.InstanceId}}</td>
+                <td>{{ item.MeterCategory}}</td>
+                <td>{{ item.ResourceGroup}}</td>
+                <td>{{ item.ResourceLocation}}</td>
+                <td>{{ item.Tags}}</td>
+                <td>{{ item.UnitOfMeasure}}</td>
+                <td>{{ item.Location}}</td>
+                <td>{{ item.ServiceName}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

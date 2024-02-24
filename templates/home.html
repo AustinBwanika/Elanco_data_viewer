@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block head %}
+<!-- Custom head content can go here -->
+{% endblock %}
+
+{% block content %}
+    <div class="py-5 text-center">
+        <h1 class="display-3">Elanco Data Viewer</h1>
+        <p class="lead">Welcome to the Elanco Data Viewer. This platform is designed to provide insights and analytics on Elanco's data, facilitating better decision-making and strategy planning.</p>
+        <p class="lead">Below, you will find two main functionalities of our platform: "Data" for accessing our datasets, and "Visualize" for exploring data through interactive visualizations.</p>
+        <div class="mt-4">
+            <a href="{% url 'page_data' %}" class="btn btn-primary btn-lg" role="button">Data</a>
+            <a href="{% url 'page_visuals' %}" class="btn btn-primary btn-lg" role="button">Visualize</a>
+        </div>
+    </div>
+{% endblock %}
