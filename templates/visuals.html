@@ -6,35 +6,51 @@
 
 {% block head %}
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 {% endblock%}
 
 {% block content%}
 <div class ="py-5 text-center">
     <h1 class="display-3">Elanco Data Viewer -Visuals</h1>
     <h2>Consumption per Day</h2>
-    <canvas id="ConsumptionChart" width="800" height="400"></canvas>
+<!--    <canvas id="ConsumptionChart" width="50" height="50"></canvas>-->
+    <div class="row">
+        {% for data_set in graph_data %}
+        <div class="col-md-4">
+            <canvas id="graph-{{ forloop.counter }}" width="400" height="400"></canvas>
+        </div>
+        {% endfor %}
+    </div>
 </div>
+{% endblock %}
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% block javascript %}
+
+<!--<script  src="https://cdn.jsdelivr.net/npm/chart.js"></script>-->
+
 <script>
-    var ctx = document.getElementById('ConsumptionChart').getContext('2d');
-    var ConsumptionChart = new Chart(ctx, {
+    var graphData = {{ graph_data|json_script:"graph_data" }};
+
+    graphData.forEach(function(dataSet, index){
+        var ctx = document.getElementById('ConsumptionChart').getContext('2d');
+        var ConsumptionChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: {{ graph_data.labels|safe }},
+            labels: dataSet.dates,
             datasets: [{
                 label: 'Consumed Quantity',
-                data: {{ graph_data.usage|safe }}, ,
+                data: dataSet.usage,
                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgba(255, 99, 132, 1)',
+                borderColor: 'rgb(163,12,44)',
                 borderWidth: 1,
-                fill: false
+                fill: false,
             }]
         },
         options: {
             scales: {
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
                     title: {
                         display: true,
                         text: 'Consumed Quantity'
@@ -50,6 +66,8 @@
             responsive: true,
             maintainAspectRatio: false
         }
+    });
+
     });
 </script>
 {% endblock %}
